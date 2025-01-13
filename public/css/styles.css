@@ -147,6 +147,7 @@ div.rev {
 
   .content {
     background-position: right;
+    background-size: 400px;
     display: block;
     padding: 5px 0 0 5px;
   }
