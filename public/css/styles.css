@@ -4,3 +4,156 @@
 *:after {
   box-sizing: border-box;
 }
+
+html {
+  background: url('../images/site/small_check.jpg');
+  background-size: cover; /* Ensures the image covers the viewport */
+}
+
+body {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  width: 1350px;
+  margin: 20px auto;
+  background-color: white; /* White background for the body content */
+  border: 5px solid rgb(19, 96, 220);
+  border-radius: 10px;
+  padding: 20px 10px;
+  position: relative; /* Makes the body sit above the background */
+  z-index: 1; /* Ensures it stacks above the html background */
+}
+
+.content {
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.9); /* Optional semi-transparent background */
+}
+
+
+header#top-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+span.siteName {
+  font-size: x-large;
+}
+
+
+header a {
+  color: black;
+  text-decoration: none;
+}
+
+header a:hover {
+  text-decoration: underline;
+}
+
+
+
+nav {
+  display: flex;
+  gap: 15px;
+  background-color: #333;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+.content {
+  min-height: 50vh;
+  background-image: url('../images/vehicles/delorean.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 100px;
+  gap: 30px;
+}
+
+.text {
+  align-content: center;
+  padding-left: 30px;
+  width: 300px;
+  background-color: rgb(247, 247, 247, 0.6);
+  color: blue;
+  font-weight: bolder;
+
+}
+
+
+
+/* Button Styling */
+.text button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: white;
+  background-color: #3367e1;
+  /* Bright color to stand out */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.text button:hover {
+  background-color: #cc5200;
+}
+
+section {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.upgrades {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+div.part {
+  display: flex;
+  flex: 1 1 48%;
+  padding: 10px;
+}
+
+div.rev {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  line-height: 2;
+}
+
+@media (max-width: 600px) {
+  body {
+   width: 100%;
+   height: 100%;
+   margin: 0;
+   border: none;
+   border-radius: 0;
+  }
+
+  .content {
+    background-position: right;
+    display: block;
+    padding: 5px 0 0 5px;
+  }
+
+  section {
+    display: flex;
+    flex-direction: column-reverse;
+    padding-left: 10px;
+  }
+}
