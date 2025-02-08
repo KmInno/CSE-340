@@ -9,8 +9,8 @@
             "previewLimit": 50,
             "server": "localhost",
             "driver": "PostgreSQL",
-            "name": "cse",
-            "connectString": "postgresql://cse:N1qMG8aG4wGBAUCnxIUodmfrlnvXlkpz@dpg-cudlqjd2ng1s73ej7sfg-a.oregon-postgres.render.com/cse_qb1i"
+            "name": "CSE-DB",
+            "connectString": "postgresql://cse:1CBnLQu6FT1MaEMdfvofOaw602RXvVLw@dpg-cudnk68gph6c73ff9g40-a.oregon-postgres.render.com/cse340_jjzv"
         }
     ]
 }

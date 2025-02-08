@@ -5,11 +5,14 @@
 /* ***********************
  * Require Statements
  *************************/
+const baseController = require("./controllers/baseController")
 const express = require("express")
 expressLayouts = require("express-ejs-layouts")
 const env = require("dotenv").config()
 const app = express()
 const static = require("./routes/static")
+const inventoryRoute = require("./routes/inventoryRoute") 
+
 
 /* ***********************
  * view engine and templates
@@ -19,6 +22,9 @@ app.use(expressLayouts)
 app.set("layout", "./layouts/layout") // not at views root
 
 
+
+
+
 /* ***********************
  * Routes
  *************************/
@@ -26,9 +32,16 @@ app.use(static)
 
 // index route
 
-app.get("/", function(req, res){
-  res.render("index", {title: "Home"})
-})
+app.get("/", baseController.buildHome)
+// Inventory routes
+app.use("/inv", inventoryRoute)
+
+app.use((req, res, next) => {
+  res.status(404).render('404', { 
+    title: 'Page Not Found', 
+    nav: ""
+  });
+});
 
 /* ***********************
  * Local Server Information
