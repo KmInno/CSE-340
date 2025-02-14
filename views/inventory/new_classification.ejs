@@ -1,0 +1,14 @@
+<%- messages() %>
+    <h1>Add New Classification</h1>
+    <div class="signup">
+        <div class="cont">
+            <p><Strong>classification must be all caps and no spaces</Strong></p>
+            <form action="/inv/new_classification" method="POST">
+                <label for="classificationName">Classification Name:</label>
+                <input type="text" id="classificationName" name="classification_name" required pattern="^[A-Z]+$"
+                    title="Classification name must be all uppercase letters with no spaces"
+                    placeholder="EXAMPLECLASSIFICATION"><br><br>
+                <button type="submit">Add Classification</button>
+            </form>
+        </div>
+    </div>

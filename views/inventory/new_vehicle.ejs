@@ -1,0 +1,53 @@
+
+    <%- messages() %>
+
+    <% if (errors) { %>
+        <ul class="notice">
+       <% errors.array().forEach(error => { %>
+         <li><%= error.msg %></li>
+      <%  }) %>
+       </ul>
+      <% } %>
+
+    <div class="signup">
+        <div class="cont">
+            <h2>Add New Vehicle</h2>
+            <form action="/inventory/new_vehicle" method="POST">
+                <label for="inv_make">Vehicle Make:</label>
+                <input type="text" id="inv_make" name="inv_make" required placeholder="Toyota"><br><br>
+
+                <label for="inv_model">Vehicle Model:</label>
+                <input type="text" id="inv_model" name="inv_model" required placeholder="Corolla"><br><br>
+
+                <label for="inv_year">Vehicle Year:</label>
+                <input type="number" id="inv_year" name="inv_year" required placeholder="2022" min="1886" max="2025"><br><br>
+
+                <label for="inv_description">Vehicle Description:</label>
+                <textarea id="inv_description" name="inv_description" required placeholder="A reliable and fuel-efficient sedan."></textarea><br><br>
+
+                <label for="inv_image">Vehicle Image URL:</label>
+                <input type="url" id="inv_image" name="inv_image" placeholder="/images/image.jpg"><br><br>
+
+                <label for="inv_thumbnail">Vehicle Thumbnail URL:</label>
+                <input type="url" id="inv_thumbnail" name="inv_thumbnail" placeholder="/image/thumbnail.jpg"><br><br>
+
+                <label for="inv_price">Vehicle Price:</label>
+                <input type="number" id="inv_price" name="inv_price" required placeholder="20000" min="0"><br><br>
+
+                <label for="inv_miles">Vehicle Miles:</label>
+                <input type="number" id="inv_miles" name="inv_miles" required placeholder="15000" min="0"><br><br>
+
+                <label for="inv_color">Vehicle Color:</label>
+                <input type="text" id="inv_color" name="inv_color" required placeholder="Red"><br><br>
+
+                <label for="classification_id">Vehicle Classification:</label>
+                <select id="classification_id" name="classification_id" required>
+                    <% classifications.forEach(classification => { %>
+                        <option value="<%= classification.classification_id %>"><%= classification.classification_name %></option>
+                    <% }) %>
+                </select><br><br>
+
+                <button type="submit">Add Vehicle</button>
+            </form>
+        </div>
+    </div>

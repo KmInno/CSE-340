@@ -1,4 +1,6 @@
 const invModel = require("../models/inventory-model")
+const express = require("express")
+
 const Util = {}
 
 /* ************************
@@ -77,6 +79,10 @@ Util.vehicleDetails = function (vehicle) {
   return details
 }
 
-
+Util.handleError = function (asyncFunction) {
+  return function (req, res, next) {
+    asyncFunction(req, res, next).catch(next);
+  };
+};
 
 module.exports = Util
