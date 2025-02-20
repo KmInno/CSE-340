@@ -1,4 +1,6 @@
 const utilities = require("../utilities/")
+const invModel = require("../models/inventory-model")
+
 const classificationModel = require("../models/classification-model")
 
 /* ****************************************
@@ -18,32 +20,38 @@ async function addClassification(req, res) {
     let nav = await utilities.getNav()
     const { classification_name } = req.body
 
-    const addResult  = await classificationModel.addClassification(classification_name)
+    const addResult = await classificationModel.addClassification(classification_name)
 
     if (addResult) {
-        req.flash (
+        req.flash(
             "notice",
             `Congratulations, ${classification_name} has been added to the database`
         )
         res.status(201).render("inventory/new_classification", {
             title: "Add Classification",
-            nav,})
+            nav,
+        })
     } else {
         req.flash("notice", "Sorry, the classification failed.")
         res.status(501).render("inventory/new_classification", {
             title: "Add Classification",
-            nav,})
+            nav,
+        })
     }
 }
 /* ****************************************
 loading the management page
 **************************************** */
 
-async function management(req, res, next) { 
+async function management(req, res, next) {
     let nav = await utilities.getNav()
+    const classifications = await invModel.getClassifications()
+    console.log("Classifications:", classifications)
+
     res.render("inventory/management", {
         title: "Vehicle management",
         nav,
+        classifications: classifications.rows,
         error: null,
     })
 }

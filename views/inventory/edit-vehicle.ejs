@@ -1,0 +1,52 @@
+  <h1>Edit <%= vehicle.inv_make %> <%= vehicle.inv_model %></h1>
+  <div class="signup">
+    <div class="cont">
+      <% if (errors && errors.length > 0) { %>
+        <ul>
+          <% errors.forEach(function(error) { %>
+            <li><%= error.msg %></li>
+          <% }); %>
+        </ul>
+      <% } %>
+      <form action="/inv/update/<%= vehicle.inv_id %>" method="post">
+        <input type="hidden" name="inv_id" value="<%= vehicle.inv_id %>">
+
+        <label for="inv_make">Make:</label>
+        <input type="text" id="inv_make" name="inv_make" value="<%= vehicle.inv_make %>" placeholder="Enter vehicle make" required>
+
+        <label for="inv_model">Model:</label>
+        <input type="text" id="inv_model" name="inv_model" value="<%= vehicle.inv_model %>" placeholder="Enter vehicle model" required>
+
+        <label for="inv_year">Year:</label>
+        <input type="text" id="inv_year" name="inv_year" value="<%= vehicle.inv_year %>" placeholder="Enter vehicle year" pattern="\d{4}" title="Please enter a valid year (e.g., 2025)" required>
+
+        <label for="inv_description">Description:</label>
+        <textarea id="inv_description" name="inv_description" placeholder="Enter vehicle description" required><%= vehicle.inv_description %></textarea>
+
+        <label for="inv_image">Image URL:</label>
+        <input type="url" id="inv_image" name="inv_image" value="<%= vehicle.inv_image %>" placeholder="Enter image URL" required>
+
+        <label for="inv_thumbnail">Thumbnail URL:</label>
+        <input type="url" id="inv_thumbnail" name="inv_thumbnail" value="<%= vehicle.inv_thumbnail %>" placeholder="Enter thumbnail URL" required>
+
+        <label for="inv_price">Price:</label>
+        <input type="text" id="inv_price" name="inv_price" value="<%= vehicle.inv_price %>" placeholder="Enter vehicle price" pattern="\d+(\.\d{2})?" title="Please enter a valid price (e.g., 19999.99)" required>
+
+        <label for="inv_miles">Miles:</label>
+        <input type="text" id="inv_miles" name="inv_miles" value="<%= vehicle.inv_miles %>" placeholder="Enter vehicle miles" pattern="\d+" title="Please enter a valid mileage (e.g., 50000)" required>
+
+        <label for="inv_color">Color:</label>
+        <input type="text" id="inv_color" name="inv_color" value="<%= vehicle.inv_color %>" placeholder="Enter vehicle color" required>
+
+        <label for="classification_id">Classification:</label>
+        <select id="classification_id" name="classification_id" required>
+          <% classifications.forEach(function(classification) { %>
+            <option value="<%= classification.classification_id %>" <%= classification.classification_id === vehicle.classification_id ? 'selected' : '' %>><%= classification.classification_name %></option>
+          <% }); %>
+        </select>
+
+        <button type="submit">Update Vehicle</button>
+      </form>
+    </div>
+  </div>
+</main>

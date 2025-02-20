@@ -1,0 +1,54 @@
+    <main>
+        <h1>
+            <%= title %>
+        </h1>
+        <div class="signup">
+            <div class="cont">
+                <% if (errors && errors.length > 0) { %>
+                    <ul>
+                        <% errors.forEach(function(error) { %>
+                            <li>
+                                <%= error.msg %>
+                            </li>
+                        <% }); %>
+                    </ul>
+                <% } %>
+
+                <!-- Form for updating account information -->
+                <form action="/account/update/<%= accountData.account_id %>" method="post">
+                    <label for="account_firstname">First Name:</label>
+                    <input type="text" id="account_firstname" name="account_firstname"
+                        value="<%= accountData.account_firstname %>" placeholder="Enter your first name" required>
+
+                    <label for="account_lastname">Last Name:</label>
+                    <input type="text" id="account_lastname" name="account_lastname"
+                        value="<%= accountData.account_lastname %>" placeholder="Enter your last name" required>
+
+                    <label for="account_email">Email:</label>
+                    <input type="email" id="account_email" name="account_email"
+                        value="<%= accountData.account_email %>" placeholder="Enter your email" required>
+
+                    <input type="hidden" name="account_id" value="<%= accountData.account_id %>">
+
+                    <button type="submit">Update Account Information</button>
+                </form>
+
+                <!-- Form for updating password -->
+                <form action="/account/update-password/<%= accountData.account_id %>" method="post">
+                    <label for="new_password">New Password:</label>
+                    <input type="password" id="new_password" name="new_password" placeholder="Enter new password" required
+                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one number.">
+
+                    <input type="hidden" name="account_id" value="<%= accountData.account_id %>">
+
+                    <p>By entering a new password, it will change your current password. Password must be at
+                        least 8
+                        characters long and contain at least one uppercase letter, one lowercase letter, and one
+                        number.</p>
+
+                    <button type="submit">Update Password</button>
+                </form>
+
+            </div>
+        </div>
+    </main>

@@ -9,13 +9,14 @@ const baseController = require("./controllers/baseController")
 const express = require("express")
 const session = require("express-session")
 const pool = require('./database/')
-expressLayouts = require("express-ejs-layouts")
+const expressLayouts = require("express-ejs-layouts")
 const env = require("dotenv").config()
 const app = express()
 const static = require("./routes/static")
 const inventoryRoute = require("./routes/inventoryRoute") 
 const bodyParser = require("body-parser")
-
+const cookieParser = require("cookie-parser")
+const utilities = require("./utilities/")
 
 /* ***********************
  * view engine and templates
@@ -38,8 +39,12 @@ app.use(session({
   name: 'sessionId',
 }))
 
+// Apply the login status middleware
+app.use(utilities.checkLoginStatus)
+
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+app.use(cookieParser())
 
 // Express Messages Middleware
 app.use(require('connect-flash')())
@@ -48,7 +53,7 @@ app.use(function(req, res, next){
   next()
 })
 
-
+app.use(utilities.checkJWTToken)
 
 /* ***********************
  * Routes
@@ -56,8 +61,8 @@ app.use(function(req, res, next){
 app.use(static)
 
 // index route
-
 app.get("/", baseController.buildHome)
+
 // Inventory routes
 app.use("/inv", inventoryRoute)
 app.use("/inv", require("./routes/classificationRoute"))
@@ -72,9 +77,6 @@ app.use((req, res, next) => {
     nav: ""
   });
 });
-
-
-
 
 /* ***********************
  * Local Server Information
