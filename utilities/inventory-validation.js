@@ -60,6 +60,18 @@ validate.inventoryRules = () => {
   ]
 }
 
+/*  **********************************
+*  Classification Validation Rules
+* ********************************* */
+validate.classificationRules = () => {
+  return [
+    body("classification_name")
+      .trim()
+      .matches(/^[A-Z]+$/)
+      .withMessage("Classification name must be all uppercase letters with no spaces.")
+  ]
+}
+
 /* ******************************
 * Check validation results
 * ***************************** */
@@ -73,6 +85,22 @@ validate.checkInventoryData = async (req, res, next) => {
       title: 'Edit Vehicle',
       vehicle: req.body,
       classifications: classifications.rows,
+      nav
+    })
+  }
+  next()
+}
+
+/* ******************************
+* Check validation results
+* ***************************** */
+validate.checkClassificationData = async (req, res, next) => {
+  const errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav()
+    return res.status(400).render('inventory/new_classification', {
+      errors: errors.array(),
+      title: 'Add New Classification',
       nav
     })
   }

@@ -1,8 +1,15 @@
-<%- messages() %>
+    <%- messages() %>
     <h1>Add New Classification</h1>
     <div class="signup">
         <div class="cont">
-            <p><Strong>classification must be all caps and no spaces</Strong></p>
+            <p><strong>Classification must be all caps and no spaces</strong></p>
+            <% if (errors && errors.length > 0) { %>
+                <ul>
+                    <% errors.forEach(function(error) { %>
+                        <li><%= error.msg %></li>
+                    <% }); %>
+                </ul>
+            <% } %>
             <form action="/inv/new_classification" method="POST">
                 <label for="classificationName">Classification Name:</label>
                 <input type="text" id="classificationName" name="classification_name" required pattern="^[A-Z]+$"
